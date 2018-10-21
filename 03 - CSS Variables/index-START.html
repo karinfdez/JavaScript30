@@ -22,6 +22,7 @@
 
   <style>
 
+    /* Entire document selector */
     :root {
       --base: #ffc600;
       --spacing: 10px;
@@ -34,7 +35,7 @@
       filter: blur(var(--blur));
     }
 
-    .h1 {
+    .hl {
       color: var(--base);
     }
 
@@ -57,6 +58,15 @@
   </style>
 
   <script>
+    const inputs = document.querySelectorAll('.controls input');
+    
+    function handleUpdate() {
+      const suffix = this.dataset.sizing || ''; //Selects the data attribute "data-sizing" from inside the input
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+    }
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate)); //trigger the functions when mouse moves quick over the bar
   </script>
 
 </body>
