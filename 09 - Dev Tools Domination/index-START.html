@@ -17,29 +17,69 @@
       p.style.fontSize = '50px';
     }
 
-    // Regular
 
-    // Interpolated
+// The following are types of console log:
+
+    // Regular
+    console.log('hello');
+
+    // Interpolated 
+    console.log('hello I am a %s string!', 'beautiful');
+    myVar = 'beautiful';
+    console.log(`Hello I am ${myVar} string!`);
 
     // Styled
+    console.log('%c I am some great text', 'font-size:50px; background:red;');
 
     // warning!
+    console.warn('This is a warning');
 
     // Error :|
+    console.error('Shit!');
 
     // Info
+    console.info('This is an info');
 
     // Testing
-
+    console.assert(1 === 1, 'That is wrong!');  //Only fires if something is false
+    console.assert(1 === 2, '1 is not equal to 2');  
+    
     // clearing
+    console.clear();
 
     // Viewing DOM Elements
+    const p = document.querySelector('p');
+    console.log(p);  //Shows the p element
+    console.dir(p); //Creates an object to drop the element p(ex: classList)
 
     // Grouping together
+    console.log('Grouping together');
+    dogs.map(dog => {
+      console.groupCollapsed(`${dog.name}`);
+      console.log(`This is ${dog.name}`);
+      console.groupEnd(`${dog.name}`);
+    })
 
     // counting
+    console.log('Counting in console: ');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Wes');
 
-    // timing
+    // timing the amount of ms it takes a request
+    console.log('Using timing: ');
+    console.time('fetching data');
+    fetch('https://api.github.com/users/wesbos')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetching data');
+        console.log(data);
+      })
+
+    //Display table
+    console.log('Display table: ')
+    console.table(dogs);
 
   </script>
 </body>
