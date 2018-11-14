@@ -62,7 +62,21 @@
     const sliderImages = document.querySelectorAll('.slide-in');
     
     function checkSlide(e) {
-      
+      sliderImages.forEach(sliderImage => {
+        //How for is the page being scroll down in pixels at the very top of the browser(windpw.scrollY)
+        //To know where we are at the botton of the window(window.scrollY + window.innerHeight)
+        //Let us slide at the image at the very bottom => (window.scrollY + window.innerHeight) - slideImage.height
+        //Half way through the image
+        const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height/2;  //=> Let us slide at the middle of the image
+        // sliderImage.offsetTop => Tell us how far is the top of the image from the top of the page
+        //To know where is the bottom of the image
+        //Bottom of the image
+        const imageBottom = sliderImage.offsetTop + sliderImage.height; 
+        const isHalfShown = slideInAt > sliderImage.offsetTop;
+        const isNotScrolledPast = window.scrollY < imageBottom;
+        isHalfShown && isNotScrolledPast ?
+          sliderImage.classList.add('active') : sliderImage.classList.remove('active');
+      })
     }
     window.addEventListener('scroll', debounce(checkSlide));
   </script>
